@@ -20,6 +20,8 @@ public class ChoiceStep {
 		if((containsAND(entry,"qui","tu") || containsAND(entry,"comment","appelle"))&&containsAND(entry,"?","?")) return whoAreYou(0);
 		if(containsAND(entry,"présente","toi")) return whoAreYou(0);
 		if(containsAND(entry,"je","appelle") || containsAND(entry,"mon","nom")) return whoAreYou(1);
+		//weather
+		if(containsOR(entry,"météo","temps","habiller","parapluie")) return whichWeather();
 
 		return randomFact();
 	}
@@ -79,6 +81,26 @@ public class ChoiceStep {
 			arr[0] = "Je suis désolé mais je ne suis pas sûr de vous suivre..";
 			arr[1] = "Pouvez vous reformuler ? Je n'ai pas compris..";
 			arr[2] = "C'est sans doute très interessant mais je ne suis pas capable de comprendre..";
+
+
+		Random random = new Random();
+		return arr[random.nextInt(arr.length)];
+	}
+	
+	private static String whichWeather() {
+		
+		String[] weather = WeatherAPI.getWeather();
+		/*
+		 * weather 0 : AreaName
+		 * weather 1 : Description
+		 * weather 2 : tempMin
+		 * weather 3 : tempMax
+		 */
+		
+		String[] arr = new String[3];
+			arr[0] = "Il va "+weather[1]+"et la température sera comprise entre "+weather[2]+" et "+weather[3]+" sur "+weather[0];
+			arr[1] = "Il va "+weather[1]+"et la température sera comprise entre "+weather[2]+" et "+weather[3]+" sur "+weather[0];
+			arr[2] = "Il va "+weather[1]+"et la température sera comprise entre "+weather[2]+" et "+weather[3]+" sur "+weather[0];
 
 
 		Random random = new Random();
