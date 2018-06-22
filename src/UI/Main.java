@@ -19,9 +19,7 @@ public class Main {
 			String str = sc.nextLine();
 			bot.send(str);
 			System.out.println("> "+botName+": "+bot.reply());
-
 		}
-
 	}
 
 }
